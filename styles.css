@@ -1,0 +1,29 @@
+/* スライダーとラベルを格納するコンテナのスタイル */
+#custom-speed-slider-container {
+  /* コンテナ内部の要素（スライダーとラベル）を中央揃えにする */
+  display: flex;
+  align-items: center;
+  
+  /* 他のボタンと干渉しないように左右に少し余白を設ける */
+  margin: 0 15px;
+}
+
+/* スライダー本体のスタイル */
+#custom-speed-slider {
+  /* スライダーの幅を少し広げる */
+  width: 120px; 
+  height: 5px;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-right: 8px; /* スライダーとラベルの間の余白 */
+}
+
+/* 速度を表示するラベルのスタイル */
+#custom-speed-label {
+  color: white;
+  font-size: 13px;
+  min-width: 42px; /* 幅を固定してガタガタしないようにする */
+  text-align: right;
+  font-weight: bold;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* 文字を読みやすくする影 */
+}
