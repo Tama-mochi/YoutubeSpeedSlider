@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "YouTube Speed Slider",
     "version": "1.0",
-    "description": "Adds a playback speed slider next to the subtitles button on the YouTube player.",
+    "description": "Adds a playback speed slider on the YouTube player.",
     "permissions": [],
     "content_scripts": [
       {

@@ -26,10 +26,21 @@ function initializeSlider() {
     const speedSlider = document.createElement('input');
     speedSlider.id = 'custom-speed-slider';
     speedSlider.type = 'range';
-    speedSlider.min = '0.25';
-    speedSlider.max = '3.0';
+    speedSlider.min = '0.1';
+    speedSlider.max = '5.0';
     speedSlider.step = '0.05';
     speedSlider.value = video.playbackRate;
+
+    // スライダーの値をCSS変数に反映させる関数
+    const updateSliderStyle = (value) => {
+      const min = parseFloat(speedSlider.min);
+      const max = parseFloat(speedSlider.max);
+      const percent = ((value - min) / (max - min)) * 100;
+      speedSlider.style.setProperty('--value-percent', `${percent}%`);
+    };
+    
+    // 初期表示時にもスタイルを適用
+    updateSliderStyle(speedSlider.value);
 
     // 4. スライダーを動かしたときの処理
     speedSlider.addEventListener('input', () => {
@@ -38,15 +49,18 @@ function initializeSlider() {
         video.playbackRate = newSpeed;
       }
       speedLabel.textContent = parseFloat(newSpeed).toFixed(2) + 'x';
+      updateSliderStyle(newSpeed); // スタイルを更新
     });
     
     // ダブルクリックで速度をリセット(1.0x)する機能
     speedSlider.addEventListener('dblclick', () => {
-      speedSlider.value = 1.0;
+      const newSpeed = 1.0;
+      speedSlider.value = newSpeed;
       if(video) {
-        video.playbackRate = 1.0;
+        video.playbackRate = newSpeed;
       }
       speedLabel.textContent = '1.00x';
+      updateSliderStyle(newSpeed); // スタイルを更新
     });
 
     // 5. 作成した要素をコンテナに追加
