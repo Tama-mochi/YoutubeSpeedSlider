@@ -88,7 +88,7 @@ const observer = new MutationObserver((mutations) => {
     lastUrl = location.href;
     setTimeout(initializeSlider, 500); 
   }
-  // プレイヤーが後から読み込まれる場合にも対応
+  // プレイヤーが後から読み込まれる場合にも対応する
   if (!document.getElementById('custom-speed-slider-container')) {
     initializeSlider();
   }
