@@ -7,6 +7,9 @@
 - [ ] **展開して読み込み**をクリックして**youtube-speed-slider**フォルダを開く
 - [ ] Youtubeを開いて動作確認
 
-![スクリーンショット 2025-06-08 140812 (2)](https://github.com/user-attachments/assets/b5231c1d-66cf-42cc-b57c-a5e31bb60ded)
+![スクリーンショット 2025-06-09 185121](https://github.com/user-attachments/assets/14acae12-687e-41ab-89fd-6db3a4294d39)
+
+ ### フルスクリーンでも使えます
+![スクリーンショット 2025-06-09 185319](https://github.com/user-attachments/assets/a77f150f-6d03-4789-b766-0224ae2c415c)
 
 ※ うまく表示されない場合は拡張機能画面での再読込、ブラウザの再起動を試してください
