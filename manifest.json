@@ -1,9 +1,9 @@
 {
     "manifest_version": 3,
     "name": "YouTube Speed Slider",
-    "version": "1.1",
-    "description": "Adds a playback speed slider on the YouTube player.",
-    "permissions": [],
+    "version": "1.2",
+    "description": "Adds a playback speed slider on the YouTube player, allowing speed adjustment from 0.1× to 5.0×.",
+    "permissions": ["storage"],
     "content_scripts": [
       {
         "matches": ["https://www.youtube.com/*"],
