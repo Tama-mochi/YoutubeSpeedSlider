@@ -4,6 +4,9 @@ let sliderInitialized = false;
 // ドラッグ状態を管理するグローバル変数
 let isDraggingSlider = false;
 
+// requestAnimationFrameのIDを管理する変数
+let animationFrameId = null;
+
 // スライダーを初期化してページに追加するメインの関数
 function initializeSlider() {
   const playerControls = document.querySelector('.ytp-chrome-controls');
@@ -37,6 +40,9 @@ function initializeSlider() {
     // 再生速度を1.0倍にリセットする共通関数
     const resetSpeedToDefault = () => {
       isDraggingSlider = false; // フラグをリセット
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
       const currentVideo = document.querySelector('video');
       const newSpeed = 1.0;
       if (currentVideo) {
@@ -54,13 +60,24 @@ function initializeSlider() {
     });
 
     speedSlider.addEventListener('input', () => {
-      const currentVideo = document.querySelector('video');
-      const newSpeed = speedSlider.value;
-      if (currentVideo) {
-        currentVideo.playbackRate = newSpeed;
+      // 連続するイベントをrequestAnimationFrameで間引く
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
       }
-      speedLabel.textContent = parseFloat(newSpeed).toFixed(2) + 'x';
-      updateSliderStyle(speedSlider, newSpeed);
+      animationFrameId = requestAnimationFrame(() => {
+        const currentVideo = document.querySelector('video');
+        const newSpeed = speedSlider.value;
+        if (currentVideo) {
+          currentVideo.playbackRate = newSpeed;
+        }
+        speedLabel.textContent = parseFloat(newSpeed).toFixed(2) + 'x';
+        updateSliderStyle(speedSlider, newSpeed);
+      });
+    });
+
+    // マウスボタンが上がったときにドラッグ終了とみなす
+    speedSlider.addEventListener('mouseup', () => {
+      isDraggingSlider = false;
     });
 
     // マウスを離した時にだけ速度を保存する
@@ -118,7 +135,11 @@ const observer = new MutationObserver(() => {
   }
 });
 
-observer.observe(document.body, {
+// 監視対象を動画プレーヤー(.movie_player)に限定してパフォーマンスを改善
+// プレーヤーが存在しない場合はbodyをフォールバックとして使用
+const targetNode = document.getElementById('movie_player') || document.body;
+
+observer.observe(targetNode, {
   childList: true,
   subtree: true,
 });

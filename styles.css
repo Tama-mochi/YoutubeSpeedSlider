@@ -75,4 +75,36 @@
   font-weight: bold;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* 文字を読みやすくする影 */
   cursor: pointer;
+  position: relative; /* ツールチップの親要素として設定 */
+}
+
+/* ツールチップのスタイル */
+#custom-speed-label::after {
+  content: 'Double Click to Reset';
+  position: absolute;
+  /* 矢印がなくなったため、ラベルからの距離を調整 */
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(28, 28, 28, 0.9);
+  color: #fff;
+  padding: 5px 9px;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: bold; /* フォントを太字に変更 */
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+  z-index: 1000;
+  text-shadow: none;
+  /* ツールチップ自体がホバーされるのを防ぐ */
+  pointer-events: none;
+}
+
+/* ホバー時にツールチップを表示 */
+#custom-speed-label:hover::after {
+  opacity: 1;
+  visibility: visible;
 }
