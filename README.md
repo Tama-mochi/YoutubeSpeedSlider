@@ -1,3 +1,6 @@
+Chromeウェブストアで公開されています！
+[YouTube Speed Slider](https://chromewebstore.google.com/detail/dcidcipiilgpmalmhlecibhjhaokfgga?utm_source=item-share-cb)
+
 # 使用方法
 
 - [ ] 任意の場所に**youtube-speed-slider**という名前のフォルダを作成
